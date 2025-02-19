@@ -1,0 +1,153 @@
+---
+title: "**Evaluación del estado de conservación de las poblaciones de *Ericaria selaginoides* en relación a la presencia del alga asiática *Rugulopteryx okamurae* **"
+author: "Cristina Martín Romera"
+date: "28 de Enero de 2025"
+output: 
+ bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide    
+    highlight: espresso
+    theme: yeti
+bibliography: grateful-refs.bib
+#bibliography: bibliography.bib
+#csl: nature.csl
+---
+```{r global_options, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.width = 12,
+                      fig.height = 8, 
+                      fig.align = "center", 
+                      tidy.opts=list(width.cutoff=60),
+                      tidy=TRUE)
+```
+
+```{r pck, echo=FALSE}
+#install.packages("kableExtra")
+#install.packages("grateful")
+library(ggplot2)
+library(kableExtra)
+library(grateful)
+```
+
+# Introducción.
+
+Los **bosques fucales** de las costas andaluzas del **Mar Mediterráneo** son comunidades de gran relevancia por diferentes aspectos, principalmente ecológicos pero también en aspectos socio-económicos. La invasión del **alga asiática *Rugulopteryx okamurae* ** supone una amenaza muy importante de cara a su conservación. 
+
+Por ello, en el presente trabajo se propone como objetivo la **evaluación de una pradera de *Ericaria selaginoides* en la Playa de la Chucha **, Carchuna, en relación con la **presencia del alga asiática invasora *R. okamurae* **.
+
+Tras los muestreos realizados en diferentes puntos de la pradera de *E. selaginoides*, se obtuvieron los datos que se pueden apreciar en la Tabla \@ref(tab:datos).
+
+```{r datos, echo=FALSE, tab.cap= "Tabla que presenta los datos obtenidos de cobertura y de biomasa de la especie *R. okamurae.*"}
+datos<-read.csv(file = "../raw_data/Rugu1.csv", header=T, sep=";")
+  knitr::kable(summary(datos)) %>%
+    kable_styling(bootstrap_options = "striped", font_size = 10)
+```
+
+# Metodología.
+
+## Área de estudio.
+
+La zona de estudio de este trabajo es en la **Playa de la Chucha**, que se encuentra en la Entidad Local Autónoma de Carchuna-Calahonda, en el municipio de Motril, situado en la provincia de Granada al sureste del núcleo urbano de Motril, en la zona central de la costa de la provincia de Granada. Esta playa se incluye en la costa española del Mar de Alborán y posee unos 996 metros de longitud y un ancho promedio de 40 metros. La pradera de *E. selaginoides* que se encuentra en esta playa es amplia y una de las mejores conservadas de toda Andalucía occidental.
+
+En la imagen \@ref(fig:mapa), se puede apreciar la localización del área de estudio:
+
+```{r mapa, eval =TRUE, echo=FALSE, out.width="50%", fig.cap="Mapa de localización del área de estudio."}
+knitr::include_graphics("../aus/areaestudio.png")
+```
+
+## Material.
+
+Para la estimación de la cobertura se utilizó un marco de PVC de 40x40 cm, como se puede apreciar en la Figura \@ref(fig:muestras) [^1].
+
+```{r muestras, eval =TRUE, echo=FALSE, out.width="50%", fig.cap="Estimación de la cobertura de *R. okamurae* respecto a la presencia de *E. selaginoides*."}
+knitr::include_graphics("../aus/fotomuestras.jpg")  
+```
+
+Además, también se utilizaron bolsas de congelación para la recogida de biomasa de *R. okamurae*. 
+
+## Especies de estudio.
+
+<CENTER>Las especies objeto de estudio han sido las algas *E. selaginoides* y *R. okamurae*. </CENTER> 
+
+<br>
+
+<FONT COLOR="#FFD700">*E. selaginoides*</FONT> es un alga parda que se caracteriza por sus talos erguidos arborescentes, que pueden llegar a alcanzar hasta 40 cm de alto, de color pardo con iridiscencias verdosas. La erguidez de los talos se debe a la presencia de aerocistes en cadena. Presenta una base en forma de disco digitada por la que se ancla al sustrato y de la que parte un cauloide cilíndrico con ramificaciones de hasta cuarto orden. En este [enlace](https://litoraldegranada.ugr.es/el-litoral/el-litoral-sumergido/flora/macroalgas/algas-pardas/ericaria-selaginoides/) se pueden apreciar en mayor detalle las características de esta especie. 
+
+Por su parte, <FONT COLOR="#8B6914">*R. okamurae*</FONT> es también un alga parda caracterizara por sus talos planos, acintados y membranosos de color verde oliváceo, marrón u ocre, con ramificación dicótoma. En el siguiente [enlace](https://www.biodiversidadcanarias.es/exos/especie/E10551#:~:text=Descripci%C3%B3n,el%20marr%C3%B3n%20y%20el%20ocre.) pueden apreciarse características más precisas del alga asiática. 
+
+# Resultados.
+
+Para establecer un **punto 0** en la comunidad de *E. selaginoides*, en relación con la presencia de *R. okamurae*, se llevaron a cabo diferentes análisis, entre ellos destaca el cálculo de la correlación entre la **cobertura de *R. okamurae* ** y la **biomasa en peso húmedo de *R. okamurae* **.
+
+```{r plot, echo=FALSE}
+datos<-read.csv(file = "../raw_data/Rugu1.csv", header=T, sep=";")
+correlation <- cor(datos$Cobertura, datos$Biomasa)
+print(paste("Correlación:", correlation))
+
+ggplot(datos, aes(x = Cobertura, y = Biomasa)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "darkorange") +
+  labs(title = "Correlación entre Cobertura de Rugulopteryx okamurae y Biomasa de R. okamurae",
+       x = "Cobertura de R. okamurae (%)",
+       y = "Biomasa de R. okamurae (g)") +
+  theme_minimal()
+```
+
+Como se puede observar, en la gráfica se observa una <span style="text-decoration:underline">**tendencia lineal positiva**</span> para las dos variables, por lo que a mayor cobertura de *R. okamurae*, mayor biomasa de la misma. 
+
+Estos resultados concuerdan con los obtenidos en la correlación entre la cobertura de *E. selaginoides* y la biomasa de *R. okamurae*, en los que se determina que a mayor cobertura de *E. selaginoides*, menor biomasa de *R. okamurae*. 
+
+# Conclusiones.
+
+A lo largo del presente trabajo se pudo determinar como esta pradera de *E. selaginoides*, ubicada en la localidad de Carchuna, es una de las pocas excepciones que resisten a la invasión por parte del alga asiática invasora *R. okamurae*. 
+
+Por lo que, se sugiere la proposición de actuaciones de seguimiento para seguir preservando este ecosistema que destaca y formula muchas hipótesis acerca de qué es lo que tiene de especial para hacer frente a una de las invasiones más rádicales a las que se enfrenta actualmente el medio marino.
+
+<CENTER>
+![**Figura 3**. En la presente imagen se muestra un ejemplo de los fondos que se pueden encontrar en el litoral granadino, caracterizado por la presencia de este alga parda tan significante para el mantenimiento de nuestras costas.](https://litoraldegranada.ugr.es/wp-content/uploads/2020/06/DSC_2349A.jpg){width=60%}
+</CENTER>
+
+[^1]: Autora participando en el muestreo y estimación de la cobertura.
+
+# Anexos.
+
+Si deseas conocer más sobre todo lo que implica y rodea el <span style="text-decoration:underline">**litoral de Granada**</span>, puedes consultar la siguiente página web. En ella encontrarás información detallada que seguramente despertará y satisfará tu curiosidad.
+
+
+<iframe src="https://litoraldegranada.ugr.es/el-litoral/el-litoral-sumergido/especies-amenazadas-de-nuestro-litoral/" height="400" width="800"></iframe>
+
+# Referencias bibliográficas. 
+```{r}
+cite_packages(output = "paragraph", out.dir = ".")
+```
+
+```{r }
+pkgs <- cite_packages(output = "table", out.dir = ".")
+knitr::kable(pkgs)
+```
+
+<!--
+estas son las cosas que no sé hacer y de las cuales tengo dudas
+-->
+---
+references:
+- type: article-journal
+  id: Ediciones OMEGA
+  author:
+  - family: Rodríguez-Prieto
+    given: C.
+  - family: Ballesteros
+    given: E.
+  - family: Boisset
+    given: F.
+  - family: Afonso-Carrillo
+    given: J.
+  issued:
+    date-parts:
+    - 2013
+---
