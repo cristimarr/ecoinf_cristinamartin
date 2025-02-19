@@ -43,7 +43,7 @@ Por ello, en el presente trabajo se propone como objetivo la **evaluación de un
 Tras los muestreos realizados en diferentes puntos de la pradera de *E. selaginoides*, se obtuvieron los datos que se pueden apreciar en la Tabla \@ref(tab:datos).
 
 ```{r datos, echo=FALSE, tab.cap= "Tabla que presenta los datos obtenidos de cobertura y de biomasa de la especie *R. okamurae.*"}
-datos<-read.csv(file = "../raw_data/Rugu1.csv", header=T, sep=";")
+datos<-read.csv(file = "../ecoinf_cristinamartin/Rugu1.csv", header=T, sep=";")
   knitr::kable(summary(datos)) %>%
     kable_styling(bootstrap_options = "striped", font_size = 10)
 ```
@@ -52,12 +52,12 @@ datos<-read.csv(file = "../raw_data/Rugu1.csv", header=T, sep=";")
 
 ## Área de estudio.
 
-La zona de estudio de este trabajo es en la **Playa de la Chucha**, que se encuentra en la Entidad Local Autónoma de Carchuna-Calahonda, en el municipio de Motril, situado en la provincia de Granada al sureste del núcleo urbano de Motril, en la zona central de la costa de la provincia de Granada. Esta playa se incluye en la costa española del Mar de Alborán y posee unos 996 metros de longitud y un ancho promedio de 40 metros. La pradera de *E. selaginoides* que se encuentra en esta playa es amplia y una de las mejores conservadas de toda Andalucía occidental.
+La zona de estudio de este trabajo es en la [Playa de la Chucha](https://www.biodiversidadcanarias.es/exos/especie/E10551#:~:text=Descripci%C3%B3n,el%20marr%C3%B3n%20y%20el%20ocre.), que se encuentra en la Entidad Local Autónoma de Carchuna-Calahonda, en el municipio de Motril, situado en la provincia de Granada al sureste del núcleo urbano de Motril, en la zona central de la costa de la provincia de Granada. Esta playa se incluye en la costa española del Mar de Alborán y posee unos 996 metros de longitud y un ancho promedio de 40 metros. La pradera de *E. selaginoides* que se encuentra en esta playa es amplia y una de las mejores conservadas de toda Andalucía occidental.
 
 En la imagen \@ref(fig:mapa), se puede apreciar la localización del área de estudio:
 
 ```{r mapa, eval =TRUE, echo=FALSE, out.width="50%", fig.cap="Mapa de localización del área de estudio."}
-knitr::include_graphics("../aus/areaestudio.png")
+knitr::include_graphics("../ecoinf_cristinamartin/areaestudio.png")
 ```
 
 ## Material.
@@ -65,7 +65,7 @@ knitr::include_graphics("../aus/areaestudio.png")
 Para la estimación de la cobertura se utilizó un marco de PVC de 40x40 cm, como se puede apreciar en la Figura \@ref(fig:muestras) [^1].
 
 ```{r muestras, eval =TRUE, echo=FALSE, out.width="50%", fig.cap="Estimación de la cobertura de *R. okamurae* respecto a la presencia de *E. selaginoides*."}
-knitr::include_graphics("../aus/fotomuestras.jpg")  
+knitr::include_graphics("../ecoinf_cristinamartin/fotomuestras.jpg")  
 ```
 
 Además, también se utilizaron bolsas de congelación para la recogida de biomasa de *R. okamurae*. 
@@ -85,7 +85,7 @@ Por su parte, <FONT COLOR="#8B6914">*R. okamurae*</FONT> es también un alga par
 Para establecer un **punto 0** en la comunidad de *E. selaginoides*, en relación con la presencia de *R. okamurae*, se llevaron a cabo diferentes análisis, entre ellos destaca el cálculo de la correlación entre la **cobertura de *R. okamurae* ** y la **biomasa en peso húmedo de *R. okamurae* **.
 
 ```{r plot, echo=FALSE}
-datos<-read.csv(file = "../raw_data/Rugu1.csv", header=T, sep=";")
+datos<-read.csv(file = "../ecoinf_cristinamartin/Rugu1.csv", header=T, sep=";")
 correlation <- cor(datos$Cobertura, datos$Biomasa)
 print(paste("Correlación:", correlation))
 
